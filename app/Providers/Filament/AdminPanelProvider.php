@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\ChangePassword;
 use App\Filament\Widgets\MonthlyTransactionsChart;
 use App\Filament\Widgets\StatsOverview;
 use Filament\Http\Middleware\Authenticate;
@@ -9,6 +10,7 @@ use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -32,6 +34,12 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName('Aplikasi Kasir')
+            ->userMenuItems([
+                MenuItem::make()
+                    ->label('Ganti Password')
+                    ->url(fn(): string => ChangePassword::getUrl())
+                    ->icon('heroicon-o-key'),
+            ])
             ->colors([
                 'primary' => Color::Amber,
             ])

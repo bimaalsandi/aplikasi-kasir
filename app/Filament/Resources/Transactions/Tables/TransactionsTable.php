@@ -16,6 +16,7 @@ class TransactionsTable
         return $table
             ->columns([
                 TextColumn::make('invoice_number')
+                    ->label('Transaction Number')
                     ->searchable(),
                 TextColumn::make('user.name')
                     ->searchable(),
